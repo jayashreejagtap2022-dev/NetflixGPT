@@ -1,20 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react'
 import logo from "../assets/Netflix_Logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from '../utils/Firebase';
 import { useSelector } from 'react-redux';
+import { onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from 'react-redux';
+import { addUser, removeUser } from '../utils/userSlice';
+
 
 const Header = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const user = useSelector(store => store.user);
     const handleSignOut = () => {
-        signOut(auth).then(() => {
-            navigate("/");
-        }).catch((error) => {
+        signOut(auth).then(() => {}).catch((error) => {
             navigate("/error");
         });
     }
+
+  useEffect(()=> {
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        const {uid, email, displayName} = user;
+        dispatch(
+          addUser(
+            {
+              uid: uid, 
+              email: email, 
+              displayName: 
+              displayName
+            })
+          );
+        navigate("/browse");
+      } else {
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+  }, []);
+
   return (
 //     <div className="absolute flex items-center p-4 bg-transparent ml-24">
 //   <img src={logo} alt="Logo" className="w-32 h-auto" />
