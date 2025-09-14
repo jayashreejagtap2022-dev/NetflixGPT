@@ -8,11 +8,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
 import { PROFILE_IMG } from '../utils/constants';
+import { toggleGptSearchView } from '../utils/gptSlice';
 
 const Header = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const user = useSelector(store => store.user);
+    const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
+
     const handleSignOut = () => {
         signOut(auth).then(() => {}).catch((error) => {
             navigate("/error");
@@ -43,6 +46,10 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleGptSearchClick = () =>{
+     dispatch(toggleGptSearchView());
+  }
+
   return (
 //     <div className="absolute flex items-center p-4 bg-transparent ml-24">
 //   <img src={logo} alt="Logo" className="w-32 h-auto" />
@@ -52,25 +59,16 @@ const Header = () => {
       <div className="flex items-center">
         <img src={logo} alt="Netflix" className="w-32 md:w-40" />
       </div>
-
-      {/* Navigation 
-      <nav className="hidden md:flex space-x-6 text-white font-medium">
-        <Link to="/">Home</Link>
-        <Link to="/tvshows">TV Shows</Link>
-        <Link to="/movies">Movies</Link>
-        <Link to="/latest">New & Popular</Link>
-        <Link to="/mylist">My List</Link>
-      </nav>
-    */}
+    
       {/* Right section */}
       { user && ( 
       <div className="flex items-center space-x-4">
         {/* Search icon */}
-        <button className="text-white hover:text-gray-300">
-          🔍
+        <button className="text-white hover:text-gray-300" onClick={handleGptSearchClick}>
+          {!showGptSearch ? 'GPT Search' : 'Home' }
         </button>        
        
-        <span className="font-medium">{user.displayName}</span>
+        <span className="text-white hover:text-gray-300 font-medium">{user.displayName}</span>
          
         <img
           src={PROFILE_IMG}
