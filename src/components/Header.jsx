@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser, removeUser } from '../utils/userSlice';
-
+import { PROFILE_IMG } from '../utils/constants';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Header = () => {
     }
 
   useEffect(()=> {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
     if (user) {
         const {uid, email, displayName} = user;
         dispatch(
@@ -38,6 +38,9 @@ const Header = () => {
         navigate("/");
       }
     });
+
+    //this will be called unsubscribe when component unmount
+    return () => unsubscribe();
   }, []);
 
   return (
@@ -70,7 +73,7 @@ const Header = () => {
         <span className="font-medium">{user.displayName}</span>
          
         <img
-          src="https://occ-0-3216-2164.1.nflxso.net/dnm/api/v6/vN7bi_My87NPKvsBoib006Llxzg/AAAABTZ2zlLdBVC05fsd2YQAR43J6vB1NAUBOOrxt7oaFATxMhtdzlNZ846H3D8TZzooe2-FT853YVYs8p001KVFYopWi4D4NXM.png?r=229"
+          src={PROFILE_IMG}
           alt="User Avatar"
           className="w-8 h-8 rounded cursor-pointer"
         />

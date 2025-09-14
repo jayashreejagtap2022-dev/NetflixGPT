@@ -5,7 +5,7 @@ import { auth } from '../utils/Firebase';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-
+import { BG_IMG } from '../utils/constants';
 
 
 const Login = () => {
@@ -84,7 +84,7 @@ const Login = () => {
          <div
           className="relative min-h-screen bg-cover bg-center"
           style={{
-            backgroundImage: `url(https://assets.nflxext.com/ffe/siteui/vlv3/0b0dad79-ad4d-42b7-b779-8518da389976/web/IN-en-20250908-TRIFECTA-perspective_0647b106-80e1-4d25-9649-63099752b49a_large.jpg)`
+            backgroundImage: `url(${BG_IMG})`
           }}
         >
           {/* Overlay */}
