@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import MovieCard from './MovieCard';
+import { BackArrow, NextArrow } from '../utils/constants';
 
 const MovieList = ({title, movies}) => {
    const rowRef = useRef();
@@ -25,13 +26,13 @@ const MovieList = ({title, movies}) => {
         onClick={() => scroll("left")}
         className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black z-10"
       >
-        ◀
+        <BackArrow />
       </button>
       <button
         onClick={() => scroll("right")}
         className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black z-10"
       >
-        ▶
+          <NextArrow />
       </button>
 
       {/* Posters in a scrollable row */}

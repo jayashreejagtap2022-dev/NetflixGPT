@@ -11,3 +11,48 @@ export const API_OPTIONS = {
 };
 
 export const IMG_CDN = "https://image.tmdb.org/t/p/w400";
+
+export const PlayIcon = ({ className = "w-5 h-5" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    viewBox="0 0 24 24"
+    fill="currentColor"
+  >
+    <path d="M4 2v20l18-10L4 2z" />
+  </svg>
+);
+
+export const BackArrow = ({ className = "w-6 h-6 text-white" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M15 19l-7-7 7-7"
+    />
+  </svg>
+);
+
+export const NextArrow = ({ className = "w-6 h-6 text-white" }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    className={className}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M9 5l7 7-7 7"
+    />
+  </svg>
+);

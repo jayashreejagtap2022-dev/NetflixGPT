@@ -2,7 +2,7 @@ import React from 'react'
 
 const VideoTitle = ({title,overview}) => {
   return (
-    <div className="absolute top-1/3 left-8 md:left-16 text-white z-20 max-w-xl">
+    <div className="absolute top-1/4 left-8 md:left-16 text-white z-20 max-w-xl">
       {/* Movie Title */}
       <h1 className="text-3xl md:text-6xl font-extrabold drop-shadow-lg">
         {title}

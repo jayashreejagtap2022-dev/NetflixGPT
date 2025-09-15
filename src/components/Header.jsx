@@ -54,7 +54,7 @@ const Header = () => {
 //     <div className="absolute flex items-center p-4 bg-transparent ml-24">
 //   <img src={logo} alt="Logo" className="w-32 h-auto" />
 // </div>
-<header className="fixed top-0 left-0 w-full flex items-center justify-between px-8 py-4 bg-gradient-to-b from-black/80 to-transparent z-50">
+<header className="fixed top-0 left-0 w-full flex items-center justify-between px-8 py-4 bg-gradient-to-b from-black/80 to-transparent z-50 " >
       {/* Logo */}
       <div className="flex items-center">
         <img src={logo} alt="Netflix" className="w-32 md:w-40" />
